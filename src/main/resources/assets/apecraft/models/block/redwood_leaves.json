@@ -1,0 +1,8 @@
+{
+  "credit": "Made by FrozenBlockStudios",
+  "credit": "Model by FrozenBlock Studios",
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "apecraft:block/redwood_leaves"
+  }
+}

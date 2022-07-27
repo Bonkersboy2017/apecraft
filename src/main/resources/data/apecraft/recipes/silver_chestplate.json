@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "apecraft:silver_ingot"
+        }
+    },
+    "result": {
+        "item": "apecraft:silver_chestplate",
+        "count": 1
+    }
+}

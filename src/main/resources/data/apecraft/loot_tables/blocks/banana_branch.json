@@ -1,0 +1,49 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "apecraft:banana",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 9
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "enchantments": [
+                  {
+                    "enchantment": "minecraft:silk_touch",
+                    "levels": {
+                      "min": 1,
+                      "max": 1
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "apecraft:banana"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 5,
+            "max": 7
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "apecraft:redwood_log"
+        }
+    },
+    "result": {
+        "item": "apecraft:redwood_planks",
+        "count": 4
+    }
+}

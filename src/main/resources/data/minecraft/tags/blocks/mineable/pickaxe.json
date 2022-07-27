@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "apecraft:mudstone",
+    "apecraft:silver_ore",
+    "apecraft:polished_mudstone",
+    "apecraft:mudstone_tiles",
+    "apecraft:silver_block"
+  ]
+}

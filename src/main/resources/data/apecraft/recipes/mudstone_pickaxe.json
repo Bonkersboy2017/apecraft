@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "apecraft:mudstone"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "apecraft:mudstone_pickaxe",
+        "count": 1
+    }
+}

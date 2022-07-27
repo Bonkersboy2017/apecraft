@@ -1,0 +1,8 @@
+{
+  "credit": "Made by FrozenBlockStudios",
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "apecraft:block/redwood_log_top",
+    "side": "apecraft:block/redwood_log"
+  }
+}
