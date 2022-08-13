@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "apecraft:block/redwood_slab"
+    },
+    "type=double": {
+      "model": "apecraft:block/redwood"
+    },
+    "type=top": {
+      "model": "apecraft:block/redwood_slab_top"
+    }
+  }
+}

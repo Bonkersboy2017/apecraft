@@ -1,0 +1,191 @@
+---- Minecraft Crash Report ----
+// Ouch. That hurt :(
+
+Time: 13/08/2022, 11:49
+Description: mouseClicked event handler
+
+com.google.gson.JsonParseException: Error loading registry data: Unknown element: ResourceKey[minecraft:worldgen/configured_feature / minecraft:redwood_tree]
+	at net.minecraft.util.registry.DynamicRegistryManager.method_34849(DynamicRegistryManager.java:298)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at net.minecraft.util.registry.DynamicRegistryManager.load(DynamicRegistryManager.java:298)
+	at net.minecraft.util.registry.DynamicRegistryManager.load(DynamicRegistryManager.java:292)
+	at net.minecraft.util.dynamic.RegistryOps.ofLoaded(RegistryOps.java:32)
+	at net.minecraft.util.registry.DynamicRegistryManager.createAndLoad(DynamicRegistryManager.java:269)
+	at net.minecraft.client.gui.screen.world.CreateWorldScreen.method_41854(CreateWorldScreen.java:147)
+	at net.minecraft.server.SaveLoading.load(SaveLoading.java:24)
+	at net.minecraft.client.gui.screen.world.CreateWorldScreen.create(CreateWorldScreen.java:144)
+	at net.minecraft.client.gui.screen.world.SelectWorldScreen.method_19944(SelectWorldScreen.java:72)
+	at net.minecraft.client.gui.widget.ButtonWidget.onPress(ButtonWidget.java:40)
+	at net.minecraft.client.gui.widget.PressableWidget.onClick(PressableWidget.java:16)
+	at net.minecraft.client.gui.widget.ClickableWidget.mouseClicked(ClickableWidget.java:120)
+	at net.minecraft.client.gui.ParentElement.mouseClicked(ParentElement.java:27)
+	at net.minecraft.client.Mouse.method_1611(Mouse.java:94)
+	at net.minecraft.client.gui.screen.Screen.wrapScreenError(Screen.java:491)
+	at net.minecraft.client.Mouse.onMouseButton(Mouse.java:94)
+	at net.minecraft.client.Mouse.method_22686(Mouse.java:165)
+	at net.minecraft.util.thread.ThreadExecutor.execute(ThreadExecutor.java:103)
+	at net.minecraft.client.Mouse.method_22684(Mouse.java:165)
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:43)
+	at org.lwjgl.system.JNI.invokeV(Native Method)
+	at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474)
+	at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(RenderSystem.java:222)
+	at net.minecraft.client.MinecraftClient.render(MinecraftClient.java:1174)
+	at net.minecraft.client.MinecraftClient.run(MinecraftClient.java:734)
+	at net.minecraft.client.main.Main.main(Main.java:237)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at net.minecraft.util.registry.DynamicRegistryManager.method_34849(DynamicRegistryManager.java:298)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at net.minecraft.util.registry.DynamicRegistryManager.load(DynamicRegistryManager.java:298)
+	at net.minecraft.util.registry.DynamicRegistryManager.load(DynamicRegistryManager.java:292)
+	at net.minecraft.util.dynamic.RegistryOps.ofLoaded(RegistryOps.java:32)
+	at net.minecraft.util.registry.DynamicRegistryManager.createAndLoad(DynamicRegistryManager.java:269)
+	at net.minecraft.client.gui.screen.world.CreateWorldScreen.method_41854(CreateWorldScreen.java:147)
+	at net.minecraft.server.SaveLoading.load(SaveLoading.java:24)
+	at net.minecraft.client.gui.screen.world.CreateWorldScreen.create(CreateWorldScreen.java:144)
+	at net.minecraft.client.gui.screen.world.SelectWorldScreen.method_19944(SelectWorldScreen.java:72)
+	at net.minecraft.client.gui.widget.ButtonWidget.onPress(ButtonWidget.java:40)
+	at net.minecraft.client.gui.widget.PressableWidget.onClick(PressableWidget.java:16)
+	at net.minecraft.client.gui.widget.ClickableWidget.mouseClicked(ClickableWidget.java:120)
+	at net.minecraft.client.gui.ParentElement.mouseClicked(ParentElement.java:27)
+	at net.minecraft.client.Mouse.method_1611(Mouse.java:94)
+	at net.minecraft.client.gui.screen.Screen.wrapScreenError(Screen.java:491)
+	at net.minecraft.client.Mouse.onMouseButton(Mouse.java:94)
+	at net.minecraft.client.Mouse.method_22686(Mouse.java:165)
+	at net.minecraft.util.thread.ThreadExecutor.execute(ThreadExecutor.java:103)
+	at net.minecraft.client.Mouse.method_22684(Mouse.java:165)
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:43)
+	at org.lwjgl.system.JNI.invokeV(Native Method)
+	at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474)
+
+-- Affected screen --
+Details:
+	Screen name: net.minecraft.client.gui.screen.world.SelectWorldScreen
+Stacktrace:
+	at net.minecraft.client.gui.screen.Screen.wrapScreenError(Screen.java:491)
+	at net.minecraft.client.Mouse.onMouseButton(Mouse.java:94)
+	at net.minecraft.client.Mouse.method_22686(Mouse.java:165)
+	at net.minecraft.util.thread.ThreadExecutor.execute(ThreadExecutor.java:103)
+	at net.minecraft.client.Mouse.method_22684(Mouse.java:165)
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:43)
+	at org.lwjgl.system.JNI.invokeV(Native Method)
+	at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474)
+	at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(RenderSystem.java:222)
+	at net.minecraft.client.MinecraftClient.render(MinecraftClient.java:1174)
+	at net.minecraft.client.MinecraftClient.run(MinecraftClient.java:734)
+	at net.minecraft.client.main.Main.main(Main.java:237)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+
+-- Last reload --
+Details:
+	Reload number: 1
+	Reload reason: initial
+	Finished: Yes
+	Packs: Default, Fabric Mods
+Stacktrace:
+	at net.minecraft.client.resource.ResourceReloadLogger.addReloadSection(ResourceReloadLogger.java:49)
+	at net.minecraft.client.MinecraftClient.addDetailsToCrashReport(MinecraftClient.java:2295)
+	at net.minecraft.client.MinecraftClient.run(MinecraftClient.java:753)
+	at net.minecraft.client.main.Main.main(Main.java:237)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.19
+	Minecraft Version ID: 1.19
+	Operating System: Linux (amd64) version 5.4.0-90-generic
+	Java Version: 17.0.1, Oracle Corporation
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 507568360 bytes (484 MiB) / 1740636160 bytes (1660 MiB) up to 4185915392 bytes (3992 MiB)
+	CPUs: 8
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz
+	Identifier: Intel64 Family 6 Model 94 Stepping 3
+	Microarchitecture: unknown
+	Frequency (GHz): 3.40
+	Number of physical packages: 1
+	Number of physical CPUs: 4
+	Number of logical CPUs: 8
+	Graphics card #0 name: TU104 [GeForce RTX 2060]
+	Graphics card #0 vendor: NVIDIA Corporation (0x10de)
+	Graphics card #0 VRAM (MB): 288.00
+	Graphics card #0 deviceId: 0x1e89
+	Graphics card #0 versionInfo: unknown
+	Virtual memory max (MB): 10028.29
+	Virtual memory used (MB): 10401.34
+	Swap memory total (MB): 2048.00
+	Swap memory used (MB): 30.51
+	JVM Flags: 0 total; 
+	Fabric Mods: 
+		apecraft: Example Mod 0.1
+		fabric: Fabric API 0.56.0+1.19
+		fabric-api-base: Fabric API Base 0.4.9+e62f51a3a9
+		fabric-api-lookup-api-v1: Fabric API Lookup API (v1) 1.6.7+9ff28f40a9
+		fabric-biome-api-v1: Fabric Biome API (v1) 9.0.13+b2a4a624a9
+		fabric-blockrenderlayer-v1: Fabric BlockRenderLayer Registration (v1) 1.1.18+9ff28f40a9
+		fabric-command-api-v2: Fabric Command API (v2) 2.1.1+cda9839ba9
+		fabric-content-registries-v0: Fabric Content Registries (v0) 3.1.0+4a3ec384a9
+		fabric-convention-tags-v1: Fabric Convention Tags 1.0.8+37622d24a9
+		fabric-crash-report-info-v1: Fabric Crash Report Info (v1) 0.2.3+bd0a0d4aa9
+		fabric-data-generation-api-v1: Fabric Data Generation API (v1) 5.0.1+2a5b9210a9
+		fabric-dimensions-v1: Fabric Dimensions API (v1) 2.1.27+72da3b3da9
+		fabric-entity-events-v1: Fabric Entity Events (v1) 1.4.16+9ff28f40a9
+		fabric-events-interaction-v0: Fabric Events Interaction (v0) 0.4.26+9ff28f40a9
+		fabric-game-rule-api-v1: Fabric Game Rule API (v1) 1.0.19+18990361a9
+		fabric-gametest-api-v1: Fabric Game Test API (v1) 1.0.30+e62f51a3a9
+		fabric-item-api-v1: Fabric Item API (v1) 1.5.4+767db26ea9
+		fabric-item-groups-v0: Fabric Item Groups (v0) 0.3.23+9ff28f40a9
+		fabric-key-binding-api-v1: Fabric Key Binding API (v1) 1.0.18+9ff28f40a9
+		fabric-lifecycle-events-v1: Fabric Lifecycle Events (v1) 2.1.0+33fbc738a9
+		fabric-loot-api-v2: Fabric Loot API (v2) 1.0.1+9e7660c6a9
+		fabric-message-api-v1: Fabric Message API (v1) 1.0.1+513f4a59a9
+		fabric-mining-level-api-v1: Fabric Mining Level API (v1) 2.1.8+33fbc738a9
+		fabric-models-v0: Fabric Models (v0) 0.3.15+9ff28f40a9
+		fabric-networking-api-v1: Fabric Networking API (v1) 1.0.27+7fe97409a9
+		fabric-object-builder-api-v1: Fabric Object Builder API (v1) 4.0.5+9ff28f40a9
+		fabric-particles-v1: Fabric Particles (v1) 1.0.8+dc39553aa9
+		fabric-registry-sync-v0: Fabric Registry Sync (v0) 0.9.16+92cf9a3ea9
+		fabric-renderer-api-v1: Fabric Renderer API (v1) 1.0.8+9ff28f40a9
+		fabric-renderer-indigo: Fabric Renderer - Indigo 0.6.6+9ff28f40a9
+		fabric-rendering-data-attachment-v1: Fabric Rendering Data Attachment (v1) 0.3.12+9ff28f40a9
+		fabric-rendering-fluids-v1: Fabric Rendering Fluids (v1) 3.0.5+9ff28f40a9
+		fabric-rendering-v1: Fabric Rendering (v1) 1.10.14+9ff28f40a9
+		fabric-resource-conditions-api-v1: Fabric Resource Conditions API (v1) 2.0.9+e62f51a3a9
+		fabric-resource-loader-v0: Fabric Resource Loader (v0) 0.5.3+9e7660c6a9
+		fabric-screen-api-v1: Fabric Screen API (v1) 1.0.23+9ff28f40a9
+		fabric-screen-handler-api-v1: Fabric Screen Handler API (v1) 1.2.6+9ff28f40a9
+		fabric-textures-v0: Fabric Textures (v0) 1.0.18+9ff28f40a9
+		fabric-transfer-api-v1: Fabric Transfer API (v1) 2.0.9+e62f51a3a9
+		fabric-transitive-access-wideners-v1: Fabric Transitive Access Wideners (v1) 1.1.1+9e7660c6a9
+		fabricloader: Fabric Loader 0.14.8
+		java: OpenJDK 64-Bit Server VM 17
+		minecraft: Minecraft 1.19
+	Launched Version: Fabric
+	Backend library: LWJGL version 3.3.1 SNAPSHOT
+	Backend API: NVIDIA GeForce RTX 2060/PCIe/SSE2 GL version 3.2.0 NVIDIA 470.82.00, NVIDIA Corporation
+	Window size: 2560x1440
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fabric'
+	Type: Client (map_client.txt)
+	Graphics mode: fancy
+	Resource Packs: Fabric Mods
+	Current Language: English (US)
+	CPU: 8x Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz

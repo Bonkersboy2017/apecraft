@@ -1,0 +1,11 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:birch_forest": "2022-08-13 11:37:49 +0100",
+      "minecraft:dark_forest": "2022-08-13 11:37:29 +0100",
+      "minecraft:old_growth_birch_forest": "2022-08-13 11:37:50 +0100"
+    },
+    "done": false
+  },
+  "DataVersion": 3105
+}

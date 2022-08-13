@@ -24,6 +24,10 @@ public class RegisterBlocks {
     public static final Block SILVER_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).sounds(BlockSoundGroup.STONE));
     public static final Block SILVER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.STONE));
     public static final Block BANANA_BRANCH = new Block(FabricBlockSettings.copyOf(Blocks.COCOA).sounds(BlockSoundGroup.BAMBOO));
+    public static final Block REDWOOD_STAIRS = new CustomStair(Blocks.OAK_STAIRS.getDefaultState(), REDWOOD_SETTINGS);
+    public static final Block REDWOOD_BUTTON = new CustomWoodenButton(REDWOOD_SETTINGS);
+    public static final Block REDWOOD_PRESSURE_PLATE = new CustomPressurePlate(PressurePlateBlock.ActivationRule.EVERYTHING, REDWOOD_SETTINGS);
+    public static final Block REDWOOD_SLAB = new SlabBlock(REDWOOD_SETTINGS);
 
 
     public static void registerAll()
@@ -40,6 +44,10 @@ public class RegisterBlocks {
         registerBlock(SILVER_ORE, ApecraftMod.ITEM_GROUP, new Identifier(ApecraftMod.MOD_ID, "silver_ore"));
         registerBlock(SILVER_BLOCK, ApecraftMod.ITEM_GROUP, new Identifier(ApecraftMod.MOD_ID, "silver_block"));
         registerBlock(BANANA_BRANCH, ApecraftMod.ITEM_GROUP, new Identifier(ApecraftMod.MOD_ID, "banana_branch"));
+        registerBlock(REDWOOD_STAIRS, ApecraftMod.ITEM_GROUP, new Identifier(ApecraftMod.MOD_ID, "redwood_stairs"));
+        registerBlock(REDWOOD_BUTTON, ApecraftMod.ITEM_GROUP, new Identifier(ApecraftMod.MOD_ID, "redwood_button"));
+        registerBlock(REDWOOD_PRESSURE_PLATE, ApecraftMod.ITEM_GROUP, new Identifier(ApecraftMod.MOD_ID, "redwood_pressure_plate"));
+        registerBlock(REDWOOD_SLAB, ApecraftMod.ITEM_GROUP, new Identifier(ApecraftMod.MOD_ID, "redwood_slab"));
 
 
     }

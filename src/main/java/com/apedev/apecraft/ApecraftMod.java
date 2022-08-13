@@ -2,6 +2,7 @@ package com.apedev.apecraft;
 
 import com.apedev.apecraft.blocks.RegisterBlocks;
 import com.apedev.apecraft.items.RegisterItems;
+import com.apedev.apecraft.worldgen.ApecraftPlants;
 import com.apedev.apecraft.worldgen.ModBiomes;
 import com.apedev.apecraft.worldgen.ModFeatures;
 import net.fabricmc.api.ModInitializer;
@@ -31,6 +32,7 @@ public class ApecraftMod implements ModInitializer {
 		RegisterItems.registerAll();
 		ModFeatures.registerAll();
 		ModBiomes.registerBiomes();
+		ApecraftPlants.registerAll(MOD_ID);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.

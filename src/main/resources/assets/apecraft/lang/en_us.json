@@ -42,5 +42,9 @@
     "item.apecraft.silver_leggings": "Silver Leggings",
     "item.apecraft.silver_boots": "Sliver Boots",
     "item.apecraft.snow_berries": "Snow Berries",
-    "block.apecraft.banana_branch": "Banana Branch"
+    "block.apecraft.banana_branch": "Banana Branch",
+    "block.apecraft.redwood_button": "Redwood Button",
+    "block.apecraft.redwood_pressure_plate": "Redwood Pressure Plate",
+    "block.apecraft.redwood_stairs": "Redwood Stairs",
+    "block.apecraft.redwood_stairs": "Redwood Slab"
   }

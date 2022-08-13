@@ -1,0 +1,9 @@
+{
+  "credit": "Made by FrozenBlockStudios",
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom":  "apecraft:block/redwood_planks",
+    "top":  "apecraft:block/redwood_planks",
+    "side": "apecraft:block/redwood_planks"
+  }
+}
