@@ -1,9 +1,6 @@
 package com.apedev.apecraft.mixin;
 
 import com.apedev.apecraft.RegisterWorldgen;
-import com.apedev.apecraft.blocks.RegisterBlocks;
-
-import com.apedev.apecraft.worldgen.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.YOffset;
@@ -31,14 +28,14 @@ public class VanillaSurfaceRulesInjector {
                         MaterialRules.STONE_DEPTH_FLOOR, MaterialRules.sequence(
                                 MaterialRules.condition(
                                         MaterialRules.biome(
-                                                ModBiomes.REDWOOD_KEY),
+                                                RegisterWorldgen.REDWOOD),
                                         VanillaSurfaceRulesBlockInvoker.invokeBlock(
                                                 Blocks.GRASS_BLOCK
                                         )
                                 ),
                                 MaterialRules.condition(
                                         MaterialRules.biome(
-                                                ModBiomes.REDWOOD_KEY),
+                                                RegisterWorldgen.REDWOOD),
                                         MaterialRules.condition(
                                                 MaterialRules.aboveY(YOffset.fixed(62), 0),
                                                 MaterialRules.condition(

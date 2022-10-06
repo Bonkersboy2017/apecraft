@@ -1,6 +1,11 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'io.github.juuxel.loom-quiltflower' version '1.7.+'
 	id 'maven-publish'
+	id 'eclipse'
+	id 'idea'
+	id 'java'
+	id 'java-library'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -10,18 +15,32 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+loom {
+	mixin {
+		defaultRefmapName = "mixins.apecraft.refmap.json"
+
+		accessWidenerPath = file("src/main/resources/apecraft.accesswidener")
+	}
+}
+
 repositories {
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	maven {
+		name = 'Quilt'
+		url = 'https://maven.quiltmc.org/repository/release'
+	}
 }
 
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings(loom.layered {
+		// please annoy treetrain if this doesnt work
+		it.mappings("org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.quilt_mappings}:intermediary-v2")
+		it.mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
+	})
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -52,6 +71,16 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+
+String getVersion() {
+	String version = "${rootProject.mod_version}+${rootProject.minecraft_version}"
+
+	if (findProperty("releaseType") != "stable") {
+		version += "-unstable"
+	}
+
+	return version
 }
 
 // configure the maven publication

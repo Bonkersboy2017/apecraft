@@ -13,20 +13,20 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ApecraftClient implements ClientModInitializer {
-    public static final EntityModelLayer MODEL_BONOBO_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "bonobo"), "main");
-    public static final EntityModelLayer MODEL_BONOBO_BRUTE_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "bonobo_brute"), "main");
-    public static final EntityModelLayer MODEL_CHIMPANZEE_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "chimpanzee"), "main");
-    public static final EntityModelLayer MODEL_CHIMPANZEE_BRUTE_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "chimpanzee_brute"), "main");
-    public static final EntityModelLayer MODEL_ALBINO_CHIMPANZEE_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "albino_chimpanzee"), "main");
-    public static final EntityModelLayer MODEL_ALBINO_GORILLA_ENTITY = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "albino_gorilla"), "main");
-    public static final EntityModelLayer MODEL_GORILLA_ENTITY = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "gorilla"), "main");
-    public static final EntityModelLayer MODEL_ORANGUTAN_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "orangutan"), "main");
-    public static final EntityModelLayer MODEL_SKINNY_ORANGUTAN_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "skinny_orangutan"), "main");
-    public static final EntityModelLayer MODEL_GIGANTOPITHECUS_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "gigantopithecus"), "main");
-    public static final EntityModelLayer MODEL_KINGKONG_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "kingkong"), "main");
-    public static final EntityModelLayer MODEL_GEORGE_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "george"), "main");
-    public static final EntityModelLayer MODEL_LANGURMUR_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "langarmur"), "main");
-    public static final EntityModelLayer MODEL_BAKULA_LAYER = new EntityModelLayer(new Identifier(ApecraftMod.MOD_ID, "bakula"), "main");
+    public static final EntityModelLayer MODEL_BONOBO_LAYER = new EntityModelLayer(ApecraftMod.id("bonobo"), "main");
+    public static final EntityModelLayer MODEL_BONOBO_BRUTE_LAYER = new EntityModelLayer(ApecraftMod.id("bonobo_brute"), "main");
+    public static final EntityModelLayer MODEL_CHIMPANZEE_LAYER = new EntityModelLayer(ApecraftMod.id("chimpanzee"), "main");
+    public static final EntityModelLayer MODEL_CHIMPANZEE_BRUTE_LAYER = new EntityModelLayer(ApecraftMod.id("chimpanzee_brute"), "main");
+    public static final EntityModelLayer MODEL_ALBINO_CHIMPANZEE_LAYER = new EntityModelLayer(ApecraftMod.id("albino_chimpanzee"), "main");
+    public static final EntityModelLayer MODEL_ALBINO_GORILLA_ENTITY = new EntityModelLayer(ApecraftMod.id("albino_gorilla"), "main");
+    public static final EntityModelLayer MODEL_GORILLA_ENTITY = new EntityModelLayer(ApecraftMod.id("gorilla"), "main");
+    public static final EntityModelLayer MODEL_ORANGUTAN_LAYER = new EntityModelLayer(ApecraftMod.id("orangutan"), "main");
+    public static final EntityModelLayer MODEL_SKINNY_ORANGUTAN_LAYER = new EntityModelLayer(ApecraftMod.id("skinny_orangutan"), "main");
+    public static final EntityModelLayer MODEL_GIGANTOPITHECUS_LAYER = new EntityModelLayer(ApecraftMod.id("gigantopithecus"), "main");
+    public static final EntityModelLayer MODEL_KINGKONG_LAYER = new EntityModelLayer(ApecraftMod.id("kingkong"), "main");
+    public static final EntityModelLayer MODEL_GEORGE_LAYER = new EntityModelLayer(ApecraftMod.id("george"), "main");
+    public static final EntityModelLayer MODEL_LANGURMUR_LAYER = new EntityModelLayer(ApecraftMod.id("langarmur"), "main");
+    public static final EntityModelLayer MODEL_BAKULA_LAYER = new EntityModelLayer(ApecraftMod.id("bakula"), "main");
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.register(ModEntities.BONOBO, BonoboEntityRenderer::new);

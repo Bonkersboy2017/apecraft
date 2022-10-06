@@ -1,3 +1,39 @@
-# Project exclude paths
-/.gradle/
-/build/
+# gradle
+
+.gradle/
+build/
+out/
+output/
+classes/
+
+# eclipse
+
+*.launch
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# macos
+
+*.DS_Store
+
+# maven
+
+target/
+
+# fabric
+
+run/
+/remappedSrc/

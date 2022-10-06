@@ -1,19 +1,13 @@
 package com.apedev.apecraft;
 
 import com.apedev.apecraft.blocks.RegisterBlocks;
-import com.apedev.apecraft.items.RegisterItems;
-import com.apedev.apecraft.worldgen.ModBiomes;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.MusicSound;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -24,21 +18,29 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.MegaPineFoliagePlacer;
-import net.minecraft.world.gen.foliage.PineFoliagePlacer;
-import net.minecraft.world.gen.foliage.SpruceFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
-import net.minecraft.world.gen.trunk.MegaJungleTrunkPlacer;
-import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
-import org.jetbrains.annotations.Nullable;
 
 public class RegisterWorldgen {
 
-    public static Biome createBreakthrpugh() {
+    public static final RegistryKey<Biome> REDWOOD = register("redwood");
+
+    private static RegistryKey<Biome> register(String name) {
+        return RegistryKey.of(Registry.BIOME_KEY, ApecraftMod.id(name));
+    }
+
+    public static void registerBiomes() {
+        register(REDWOOD, createRedwood());
+    }
+
+    private static RegistryEntry<Biome> register(RegistryKey<Biome> key, Biome biome) {
+        return BuiltinRegistries.add(BuiltinRegistries.BIOME, key, biome);
+    }
+
+    public static Biome createRedwood() {
         SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
         DefaultBiomeFeatures.addBatsAndMonsters(spawnSettings);
 
@@ -70,8 +72,7 @@ public class RegisterWorldgen {
 
 
         BiomeModifications.create(new Identifier(ApecraftMod.MOD_ID + "redwood"))
-                .add(ModificationPhase.ADDITIONS, BiomeSelectors.includeByKey(ModBiomes.REDWOOD_KEY), ctx -> {
-                });
+                .add(ModificationPhase.ADDITIONS, BiomeSelectors.includeByKey(REDWOOD), ctx -> {});
 
         return (new Biome.Builder())
                 .precipitation(Biome.Precipitation.NONE)
@@ -95,8 +96,6 @@ public class RegisterWorldgen {
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> REDWOOD_TREE = ConfiguredFeatures.register("redwood_tree", Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(RegisterBlocks.REDWOOD_LOG), new GiantTrunkPlacer(19, 14, 0), BlockStateProvider.of(RegisterBlocks.REDWOOD_LEAVES), new MegaPineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), ConstantIntProvider.create(17)), new TwoLayersFeatureSize(1, 0, 3)).ignoreVines().build());
 
     public static final RegistryEntry<PlacedFeature> TREES_REDWOOD = PlacedFeatures.register("trees_redwood", RegisterWorldgen.REDWOOD_TREE, VegetationPlacedFeatures.modifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(8, 0.1f, 1), Blocks.OAK_SAPLING));
-
-
 }
 
 

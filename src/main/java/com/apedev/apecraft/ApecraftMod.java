@@ -3,15 +3,12 @@ package com.apedev.apecraft;
 import com.apedev.apecraft.blocks.RegisterBlocks;
 import com.apedev.apecraft.items.RegisterItems;
 import com.apedev.apecraft.worldgen.ApecraftPlants;
-import com.apedev.apecraft.worldgen.ModBiomes;
 import com.apedev.apecraft.worldgen.ModFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ApecraftMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -31,12 +28,16 @@ public class ApecraftMod implements ModInitializer {
 		RegisterBlocks.registerAll();
 		RegisterItems.registerAll();
 		ModFeatures.registerAll();
-		ModBiomes.registerBiomes();
+		RegisterWorldgen.registerBiomes();
 		ApecraftPlants.registerAll(MOD_ID);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
 
+	}
+
+	public static Identifier id(String path) {
+		return new Identifier(MOD_ID, path);
 	}
 }

@@ -1,5 +1,6 @@
 package com.apedev.apecraft.worldgen;
 
+import com.apedev.apecraft.RegisterWorldgen;
 import com.apedev.apecraft.blocks.RegisterBlocks;
 import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -27,7 +28,7 @@ public class ApecraftPlants {
 
     public static void registerAll(String modid) {
         Registry.register(Registry.FEATURE, new Identifier(modid, "bt_banana"), BT_BANANA);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.REDWOOD_KEY),
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(RegisterWorldgen.REDWOOD),
                 GenerationStep.Feature.TOP_LAYER_MODIFICATION, BT_BANANA_PLACED.getKey().get());
 
     }
