@@ -3,8 +3,9 @@
 // Made with Blockbench 4.0.5
 	// Exported for Minecraft version 1.15 - 1.16
 	// Paste this class into your mod and generate all required imports
-	package com.apedev.apecraft.registry.entities;
+	package com.apedev.apecraft.registry.entities.render;
 
+import com.apedev.apecraft.registry.entities.BakulaEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;

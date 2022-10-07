@@ -1,4 +1,4 @@
-package com.apedev.apecraft.registry.entities;// Made with Model Converter by Globox_Z
+package com.apedev.apecraft.registry.entities.render;// Made with Model Converter by Globox_Z
 // Generate all required imports
 // Made with Blockbench 4.1.5
 	// Exported for Minecraft version 1.15

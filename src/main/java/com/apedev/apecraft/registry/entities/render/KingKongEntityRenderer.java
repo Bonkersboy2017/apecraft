@@ -1,6 +1,8 @@
-package com.apedev.apecraft.registry.entities;
+package com.apedev.apecraft.registry.entities.render;
 
+import com.apedev.apecraft.ApecraftMod;
 import com.apedev.apecraft.client.ApecraftClient;
+import com.apedev.apecraft.registry.entities.KingKongEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
@@ -8,11 +10,11 @@ import net.minecraft.util.Identifier;
 public class KingKongEntityRenderer extends MobEntityRenderer<KingKongEntity, KingKongEntityModel> {
 
     public KingKongEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new KingKongEntityModel(context.getPart(ApecraftClient.MODEL_KINGKONG_LAYER)), 0.5f);
+        super(context, new KingKongEntityModel(context.getPart(ApecraftClient.MODEL_KINGKONG_LAYER)), 3.5F);
     }
 
     @Override
     public Identifier getTexture(KingKongEntity entity) {
-        return new Identifier("apecraft", "textures/entity/kingkong.png");
+        return ApecraftMod.id("textures/entity/kingkong.png");
     }
 }

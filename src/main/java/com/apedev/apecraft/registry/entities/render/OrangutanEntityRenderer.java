@@ -1,22 +1,21 @@
-package com.apedev.apecraft.registry.entities;
+package com.apedev.apecraft.registry.entities.render;
 
+import com.apedev.apecraft.ApecraftMod;
 import com.apedev.apecraft.client.ApecraftClient;
+import com.apedev.apecraft.registry.entities.OrangutanEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 
 public class OrangutanEntityRenderer extends MobEntityRenderer<OrangutanEntity, OrangutanEntityModel> {
 
     public OrangutanEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new OrangutanEntityModel(context.getPart(ApecraftClient.MODEL_ORANGUTAN_LAYER)), 0.5f);
+        super(context, new OrangutanEntityModel(context.getPart(ApecraftClient.MODEL_ORANGUTAN_LAYER)), 1.5F);
     }
 
     @Override
     public Identifier getTexture(OrangutanEntity entity) {
-        return new Identifier("apecraft", "textures/entity/orangutan.png");
+        return ApecraftMod.id("textures/entity/orangutan.png");
     }
 }
 

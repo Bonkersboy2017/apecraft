@@ -2,14 +2,13 @@ package com.apedev.apecraft.client;
 
 import com.apedev.apecraft.ApecraftMod;
 import com.apedev.apecraft.ModEntities;
-import com.apedev.apecraft.registry.entities.*;
+import com.apedev.apecraft.registry.entities.render.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ApecraftClient implements ClientModInitializer {

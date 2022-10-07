@@ -1,15 +1,17 @@
-package com.apedev.apecraft.registry.entities;
+package com.apedev.apecraft.registry.entities.render;
 
+import com.apedev.apecraft.registry.entities.KingKongEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 
 // Made with Blockbench 4.0.5
 // Exported for Minecraft version 1.17+ for Yarn
 // Paste this class into your mod and generate all required imports
-public class KingKongEntityModel extends EntityModel<KingKongEntity> {
-	private final ModelPart KingKong;
+public class KingKongEntityModel extends SinglePartEntityModel<KingKongEntity> {
+	private final ModelPart root;
+	private final ModelPart bone;
 	private final ModelPart cube_r1;
 	private final ModelPart cube_r2;
 	private final ModelPart cube_r3;
@@ -37,15 +39,16 @@ public class KingKongEntityModel extends EntityModel<KingKongEntity> {
 	private final ModelPart cube_r20;
 	private final ModelPart cube_r21;
 	public KingKongEntityModel(ModelPart root) {
-		this.KingKong = root.getChild("KingKong");
-		this.leftleg = this.KingKong.getChild("leftleg");
-		this.leftarm = this.KingKong.getChild("leftarm");
-		this.rightarm = this.KingKong.getChild("rightarm");
-		this.rightleg = this.KingKong.getChild("rightleg");
-		this.bone5 = this.KingKong.getChild("bone5");
-		this.cube_r1 = this.KingKong.getChild("cube_r1");
-		this.cube_r2 = this.KingKong.getChild("cube_r2");
-		this.cube_r3 = this.KingKong.getChild("cube_r3");
+		this.root = root;
+		this.bone = root.getChild("bone");
+		this.leftleg = this.bone.getChild("leftleg");
+		this.leftarm = this.bone.getChild("leftarm");
+		this.rightarm = this.bone.getChild("rightarm");
+		this.rightleg = this.bone.getChild("rightleg");
+		this.bone5 = this.bone.getChild("bone5");
+		this.cube_r1 = this.bone.getChild("cube_r1");
+		this.cube_r2 = this.bone.getChild("cube_r2");
+		this.cube_r3 = this.bone.getChild("cube_r3");
 		this.cube_r4 = this.bone5.getChild("cube_r4");
 		this.cube_r5 = this.bone5.getChild("cube_r5");
 		this.cube_r6 = this.bone5.getChild("cube_r6");
@@ -69,15 +72,15 @@ public class KingKongEntityModel extends EntityModel<KingKongEntity> {
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData KingKong = modelPartData.addChild("KingKong", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 24.0F, 31.0F));
+		ModelPartData bone = modelPartData.addChild("bone", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 24.0F, 31.0F));
 
-		ModelPartData cube_r1 = KingKong.addChild("cube_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-24.0F, -71.0F, -36.0F, 48.0F, 26.0F, 51.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.0873F, 0.0F, 0.0F));
+		ModelPartData cube_r1 = bone.addChild("cube_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-24.0F, -71.0F, -36.0F, 48.0F, 26.0F, 51.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.0873F, 0.0F, 0.0F));
 
-		ModelPartData cube_r2 = KingKong.addChild("cube_r2", ModelPartBuilder.create().uv(0, 77).cuboid(-26.0F, -63.0F, -86.0F, 52.0F, 31.0F, 42.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.3491F, 0.0F, 0.0F));
+		ModelPartData cube_r2 = bone.addChild("cube_r2", ModelPartBuilder.create().uv(0, 77).cuboid(-26.0F, -63.0F, -86.0F, 52.0F, 31.0F, 42.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.3491F, 0.0F, 0.0F));
 
-		ModelPartData cube_r3 = KingKong.addChild("cube_r3", ModelPartBuilder.create().uv(147, 0).cuboid(-20.0F, -91.0F, -66.0F, 40.0F, 26.0F, 17.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0873F, 0.0F, 0.0F));
+		ModelPartData cube_r3 = bone.addChild("cube_r3", ModelPartBuilder.create().uv(147, 0).cuboid(-20.0F, -91.0F, -66.0F, 40.0F, 26.0F, 17.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0873F, 0.0F, 0.0F));
 
-		ModelPartData bone5 = KingKong.addChild("bone5", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 7.0F, 13.0F));
+		ModelPartData bone5 = bone.addChild("bone5", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 7.0F, 13.0F));
 
 		ModelPartData cube_r4 = bone5.addChild("cube_r4", ModelPartBuilder.create().uv(193, 118).cuboid(-12.0F, -122.0F, -68.0F, 24.0F, 21.0F, 28.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.3054F, 0.0F, 0.0F));
 
@@ -90,14 +93,14 @@ public class KingKongEntityModel extends EntityModel<KingKongEntity> {
 
 		ModelPartData cube_r8 = bone5.addChild("cube_r8", ModelPartBuilder.create().uv(261, 0).cuboid(-11.0F, -105.0F, -66.0F, 22.0F, 9.0F, 12.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
 
-		ModelPartData leftleg = KingKong.addChild("leftleg", ModelPartBuilder.create().uv(180, 250).cuboid(-39.0F, -36.0F, -9.0F, 21.0F, 31.0F, 21.0F, new Dilation(0.0F))
+		ModelPartData leftleg = bone.addChild("leftleg", ModelPartBuilder.create().uv(180, 250).cuboid(-39.0F, -36.0F, -9.0F, 21.0F, 31.0F, 21.0F, new Dilation(0.0F))
 		.uv(269, 91).cuboid(-39.0F, -5.0F, -15.0F, 21.0F, 5.0F, 27.0F, new Dilation(0.0F)), ModelTransform.of(10.0F, 0.0F, 0.0F, 0.0F, 0.1745F, 0.0F));
 
 		ModelPartData cube_r9 = leftleg.addChild("cube_r9", ModelPartBuilder.create().uv(67, 209).cuboid(-19.0F, -5.0F, -1.0F, 5.0F, 5.0F, 11.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, -0.2618F, 0.0F));
 
 		ModelPartData cube_r10 = leftleg.addChild("cube_r10", ModelPartBuilder.create().uv(196, 185).cuboid(-41.0F, -72.0F, -19.0F, 24.0F, 41.0F, 24.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.2618F, 0.0F, 0.0F));
 
-		ModelPartData leftarm = KingKong.addChild("leftarm", ModelPartBuilder.create().uv(0, 274).cuboid(-48.0F, -14.0F, -64.0F, 22.0F, 7.0F, 22.0F, new Dilation(0.0F))
+		ModelPartData leftarm = bone.addChild("leftarm", ModelPartBuilder.create().uv(0, 274).cuboid(-48.0F, -14.0F, -64.0F, 22.0F, 7.0F, 22.0F, new Dilation(0.0F))
 		.uv(242, 291).cuboid(-48.0F, -4.0F, -63.0F, 22.0F, 4.0F, 22.0F, new Dilation(0.0F))
 		.uv(0, 0).cuboid(-48.0F, -12.0F, -65.0F, 22.0F, 10.0F, 1.0F, new Dilation(0.0F))
 		.uv(147, 43).cuboid(-48.0F, -7.0F, -63.0F, 22.0F, 3.0F, 5.0F, new Dilation(0.0F))
@@ -111,7 +114,7 @@ public class KingKongEntityModel extends EntityModel<KingKongEntity> {
 
 		ModelPartData cube_r14 = leftarm.addChild("cube_r14", ModelPartBuilder.create().uv(0, 150).cuboid(-51.0F, -40.0F, -67.0F, 28.0F, 32.0F, 27.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.0873F, 0.0F, 0.0F));
 
-		ModelPartData rightarm = KingKong.addChild("rightarm", ModelPartBuilder.create().uv(88, 274).cuboid(26.0F, -14.0F, -64.0F, 22.0F, 7.0F, 22.0F, new Dilation(0.0F))
+		ModelPartData rightarm = bone.addChild("rightarm", ModelPartBuilder.create().uv(88, 274).cuboid(26.0F, -14.0F, -64.0F, 22.0F, 7.0F, 22.0F, new Dilation(0.0F))
 		.uv(292, 199).cuboid(26.0F, -4.0F, -63.0F, 22.0F, 4.0F, 22.0F, new Dilation(0.0F))
 		.uv(0, 11).cuboid(26.0F, -12.0F, -65.0F, 22.0F, 10.0F, 1.0F, new Dilation(0.0F))
 		.uv(83, 150).cuboid(26.0F, -7.0F, -63.0F, 22.0F, 3.0F, 5.0F, new Dilation(0.0F))
@@ -125,7 +128,7 @@ public class KingKongEntityModel extends EntityModel<KingKongEntity> {
 
 		ModelPartData cube_r18 = rightarm.addChild("cube_r18", ModelPartBuilder.create().uv(110, 150).cuboid(23.0F, -40.0F, -67.0F, 28.0F, 32.0F, 27.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.0873F, 0.0F, 0.0F));
 
-		ModelPartData rightleg = KingKong.addChild("rightleg", ModelPartBuilder.create(), ModelTransform.of(-10.0F, 0.0F, 0.0F, 0.0F, 0.1309F, 0.0F));
+		ModelPartData rightleg = bone.addChild("rightleg", ModelPartBuilder.create(), ModelTransform.of(-10.0F, 0.0F, 0.0F, 0.0F, 0.1309F, 0.0F));
 
 		ModelPartData cube_r19 = rightleg.addChild("cube_r19", ModelPartBuilder.create().uv(188, 118).cuboid(14.0F, -5.0F, -1.0F, 5.0F, 5.0F, 11.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
 
@@ -140,7 +143,7 @@ public class KingKongEntityModel extends EntityModel<KingKongEntity> {
 	}
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		KingKong.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+		bone.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 //		cube_r1.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 //		cube_r2.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 //		cube_r3.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
@@ -167,5 +170,10 @@ public class KingKongEntityModel extends EntityModel<KingKongEntity> {
 //		leftarm.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 //		leftleg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 //		rightleg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	}
+
+	@Override
+	public ModelPart getPart() {
+		return this.bone;
 	}
 }
