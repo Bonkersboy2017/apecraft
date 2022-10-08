@@ -4,6 +4,6 @@
   "textures": {
     "bottom":  "apecraft:block/redwood_planks",
     "top":  "apecraft:block/redwood_planks",
-    "side": "mushroompeople:block/shroomstone"
+    "side": "apecraft:block/redwood_planks"
   }
 }

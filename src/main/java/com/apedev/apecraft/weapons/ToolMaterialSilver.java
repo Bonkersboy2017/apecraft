@@ -4,7 +4,7 @@ import com.apedev.apecraft.items.RegisterItems;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
-public class ToolMaterialSilver  implements ToolMaterial {
+public class ToolMaterialSilver implements ToolMaterial {
 
     @Override
     public int getDurability() {

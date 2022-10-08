@@ -1,8 +1,7 @@
 package com.apedev.apecraft.worldgen;
 
 import com.apedev.apecraft.ApecraftMod;
-import com.apedev.apecraft.blocks.RegisterBlocks;
-import net.minecraft.util.Identifier;
+import com.apedev.apecraft.registry.RegisterBlocks;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
@@ -14,7 +13,6 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ModFeatures {

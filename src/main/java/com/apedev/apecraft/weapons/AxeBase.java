@@ -1,7 +1,6 @@
 package com.apedev.apecraft.weapons;
 
 
-
 import com.apedev.apecraft.ApecraftMod;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;

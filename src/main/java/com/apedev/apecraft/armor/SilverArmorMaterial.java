@@ -8,13 +8,13 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
 public class SilverArmorMaterial implements ArmorMaterial {
-    private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
-    private static final int[] PROTECTION_AMOUNTS = new int[] {13, 15, 16, 11};
+    private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
+    private static final int[] PROTECTION_AMOUNTS = new int[]{13, 15, 16, 11};
 
 
     @Override
     public int getDurability(EquipmentSlot slot) {
-        return BASE_DURABILITY[slot.getEntitySlotId()]*25;
+        return BASE_DURABILITY[slot.getEntitySlotId()] * 25;
     }
 
     @Override
@@ -51,7 +51,6 @@ public class SilverArmorMaterial implements ArmorMaterial {
     public float getKnockbackResistance() {
         return 0;
     }
-
 
 
 }

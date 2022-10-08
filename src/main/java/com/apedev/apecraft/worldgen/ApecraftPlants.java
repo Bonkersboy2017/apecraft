@@ -1,7 +1,7 @@
 package com.apedev.apecraft.worldgen;
 
 import com.apedev.apecraft.RegisterWorldgen;
-import com.apedev.apecraft.blocks.RegisterBlocks;
+import com.apedev.apecraft.registry.RegisterBlocks;
 import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;

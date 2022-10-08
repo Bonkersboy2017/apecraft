@@ -4,9 +4,8 @@
   "package": "com.apedev.apecraft.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-      "VanillaSurfaceRulesBlockInvoker",
-      "VanillaSurfaceRulesInjector",
-      "ModBiomeParameters"
+    "VanillaBiomeParametersMixin",
+    "VanillaSurfaceRulesInjector"
   ],
   "client": [
     
