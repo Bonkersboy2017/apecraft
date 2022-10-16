@@ -17,7 +17,7 @@ import net.minecraft.world.level.biome.OverworldBiomeBuilder;
 
 
 @Mixin(OverworldBiomeBuilder.class)
-public final class VanillaBiomeParametersMixin {
+public final class OverworldBiomeBuilderMixin {
 
     @Shadow
     private void addSurfaceBiome(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> parameters, Climate.Parameter temperature, Climate.Parameter humidity, Climate.Parameter continentalness, Climate.Parameter erosion, Climate.Parameter weirdness, float offset, ResourceKey<Biome> biome) {
