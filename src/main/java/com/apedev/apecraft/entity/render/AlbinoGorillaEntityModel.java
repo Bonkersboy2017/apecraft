@@ -6,12 +6,17 @@
 package com.apedev.apecraft.entity.render;
 
 import com.apedev.apecraft.entity.AlbinoGorillaEntity;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.SinglePartEntityModel;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 
 
-public class AlbinoGorillaEntityModel extends SinglePartEntityModel<AlbinoGorillaEntity> {
+public class AlbinoGorillaEntityModel extends HierarchicalModel<AlbinoGorillaEntity> {
     private final ModelPart root;
     private final ModelPart leftArm;
     private final ModelPart cube_r1;
@@ -71,84 +76,84 @@ public class AlbinoGorillaEntityModel extends SinglePartEntityModel<AlbinoGorill
         this.cube_r18 = this.head.getChild("cube_r18");
     }
 
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
+    public static LayerDefinition getTexturedModelData() {
+        MeshDefinition modelData = new MeshDefinition();
+        PartDefinition modelPartData = modelData.getRoot();
 
-        ModelPartData modelPartData1 = modelPartData.addChild("leftarm", ModelPartBuilder.create().uv(90, 89).cuboid(-3.7846F, 20.0F, -3.8742F, 10.0F, 3.0F, 9.0F), ModelTransform.pivot(9.0F, 1.0F, 2.0F));
-        modelPartData1.addChild("cube_r1", ModelPartBuilder.create().uv(92, 109).cuboid(16.0F, -24.0F, 1.0F, 8.0F, 12.0F, 7.0F), ModelTransform.pivot(-19.0F, 23.0F, -2.0F));
-        modelPartData1.addChild("cube_r2", ModelPartBuilder.create().uv(99, 102).cuboid(16.0F, -2.0F, -3.0F, 8.0F, 3.0F, 2.0F), ModelTransform.pivot(-19.0F, 23.0F, -2.0F));
-        modelPartData1.addChild("cube_r3", ModelPartBuilder.create().uv(60, 94).cuboid(15.0F, -14.0F, -2.0F, 10.0F, 12.0F, 9.0F), ModelTransform.pivot(-19.0F, 23.0F, -2.0F));
-        ModelPartData modelPartData2 = modelPartData.addChild("leftleg", ModelPartBuilder.create(), ModelTransform.pivot(15.0F, 7.0F, 21.0F));
-        modelPartData2.addChild("cube_r4", ModelPartBuilder.create().uv(42, 98).cuboid(-10.7846F, 12.0F, -0.8742F, 5.0F, 2.0F, 1.0F), ModelTransform.pivot(-2.0F, 3.0F, 0.0F));
-        modelPartData2.addChild("cube_r5", ModelPartBuilder.create().uv(30, 102).cuboid(-11.7846F, -5.0F, -1.8742F, 7.0F, 19.0F, 7.0F), ModelTransform.pivot(-2.0F, 3.0F, 0.0F));
-        ModelPartData modelPartData3 = modelPartData.addChild("torso", ModelPartBuilder.create(), ModelTransform.pivot(-8.0F, 24.0F, 0.0F));
-        modelPartData3.addChild("cube_r6", ModelPartBuilder.create().uv(97, 11).cuboid(-16.0F, -14.0F, -14.0F, 7.0F, 2.0F, 7.0F), ModelTransform.pivot(16.0F, 0.0F, 0.0F));
-        modelPartData3.addChild("cube_r7", ModelPartBuilder.create().uv(79, 0).cuboid(9.0F, -14.0F, -14.0F, 7.0F, 2.0F, 7.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData3.addChild("cube_r8", ModelPartBuilder.create().uv(62, 13).cuboid(2.0F, -27.0F, -5.0F, 12.0F, 6.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData3.addChild("cube_r9", ModelPartBuilder.create().uv(46, 25).cuboid(1.0F, -17.0F, 20.0F, 14.0F, 7.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData3.addChild("cube_r10", ModelPartBuilder.create().uv(48, 0).cuboid(3.0F, -22.0F, -21.0F, 10.0F, 3.0F, 10.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData3.addChild("cube_r11", ModelPartBuilder.create().uv(0, 0).cuboid(0.0F, -24.0F, -15.0F, 16.0F, 10.0F, 15.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        modelPartData3.addChild("cube_r12", ModelPartBuilder.create().uv(0, 26).cuboid(1.0F, 5.0F, 13.0F, 14.0F, 14.0F, 9.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        ModelPartData modelPartData4 = modelPartData.addChild("rightleg", ModelPartBuilder.create(), ModelTransform.pivot(-5.0F, 7.0F, 21.0F));
-        modelPartData4.addChild("cube_r13", ModelPartBuilder.create().uv(7, 99).cuboid(-3.2154F, 12.0F, -1.8742F, 5.0F, 2.0F, 1.0F, true), ModelTransform.pivot(1.0F, 3.0F, 0.0F));
-        modelPartData4.addChild("cube_r14", ModelPartBuilder.create().uv(0, 102).cuboid(-18.0F, -19.0F, 17.0F, 7.0F, 19.0F, 7.0F, true), ModelTransform.pivot(13.0F, 17.0F, -21.0F));
-        ModelPartData modelPartData5 = modelPartData.addChild("rightarm", ModelPartBuilder.create().uv(32, 67).cuboid(-6.2154F, 20.0F, -4.8742F, 10.0F, 3.0F, 9.0F, true), ModelTransform.pivot(-9.0F, 1.0F, 3.0F));
-        modelPartData5.addChild("cube_r15", ModelPartBuilder.create().uv(0, 75).cuboid(-8.0F, -24.0F, 2.0F, 8.0F, 12.0F, 7.0F), ModelTransform.pivot(3.0F, 23.0F, -3.0F));
-        modelPartData5.addChild("cube_r16", ModelPartBuilder.create().uv(36, 79).cuboid(-24.0F, -2.0F, -3.0F, 8.0F, 3.0F, 2.0F, true), ModelTransform.pivot(19.0F, 23.0F, -3.0F));
-        modelPartData5.addChild("cube_r17", ModelPartBuilder.create().uv(0, 53).cuboid(-9.0F, -14.0F, -2.0F, 10.0F, 12.0F, 9.0F), ModelTransform.pivot(3.0F, 23.0F, -3.0F));
-        ModelPartData modelPartData6 = modelPartData.addChild("head", ModelPartBuilder.create().uv(57, 59).cuboid(-5.0F, -2.0F, -8.0F, 10.0F, 8.0F, 9.0F), ModelTransform.pivot(0.0F, -5.0F, 0.0F));
-        modelPartData6.addChild("cube_r18", ModelPartBuilder.create().uv(96, 61).cuboid(5.0F, -27.0F, -8.0F, 6.0F, 4.0F, 5.0F), ModelTransform.pivot(-8.0F, 29.0F, 0.0F));
-        modelPartData6.addChild("cube_r19", ModelPartBuilder.create().uv(87, 50).cuboid(3.0F, -21.0F, -26.0F, 10.0F, 4.0F, 6.0F), ModelTransform.pivot(-8.0F, 29.0F, 0.0F));
-        modelPartData6.addChild("cube_r20", ModelPartBuilder.create().uv(98, 72).cuboid(3.0F, -20.0F, -29.0F, 10.0F, 4.0F, 5.0F), ModelTransform.pivot(-8.0F, 29.0F, 0.0F));
-        return TexturedModelData.of(modelData, 128, 128);
+        PartDefinition modelPartData1 = modelPartData.addOrReplaceChild("leftarm", CubeListBuilder.create().texOffs(90, 89).addBox(-3.7846F, 20.0F, -3.8742F, 10.0F, 3.0F, 9.0F), PartPose.offset(9.0F, 1.0F, 2.0F));
+        modelPartData1.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(92, 109).addBox(16.0F, -24.0F, 1.0F, 8.0F, 12.0F, 7.0F), PartPose.offset(-19.0F, 23.0F, -2.0F));
+        modelPartData1.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(99, 102).addBox(16.0F, -2.0F, -3.0F, 8.0F, 3.0F, 2.0F), PartPose.offset(-19.0F, 23.0F, -2.0F));
+        modelPartData1.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(60, 94).addBox(15.0F, -14.0F, -2.0F, 10.0F, 12.0F, 9.0F), PartPose.offset(-19.0F, 23.0F, -2.0F));
+        PartDefinition modelPartData2 = modelPartData.addOrReplaceChild("leftleg", CubeListBuilder.create(), PartPose.offset(15.0F, 7.0F, 21.0F));
+        modelPartData2.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(42, 98).addBox(-10.7846F, 12.0F, -0.8742F, 5.0F, 2.0F, 1.0F), PartPose.offset(-2.0F, 3.0F, 0.0F));
+        modelPartData2.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(30, 102).addBox(-11.7846F, -5.0F, -1.8742F, 7.0F, 19.0F, 7.0F), PartPose.offset(-2.0F, 3.0F, 0.0F));
+        PartDefinition modelPartData3 = modelPartData.addOrReplaceChild("torso", CubeListBuilder.create(), PartPose.offset(-8.0F, 24.0F, 0.0F));
+        modelPartData3.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(97, 11).addBox(-16.0F, -14.0F, -14.0F, 7.0F, 2.0F, 7.0F), PartPose.offset(16.0F, 0.0F, 0.0F));
+        modelPartData3.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(79, 0).addBox(9.0F, -14.0F, -14.0F, 7.0F, 2.0F, 7.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+        modelPartData3.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(62, 13).addBox(2.0F, -27.0F, -5.0F, 12.0F, 6.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+        modelPartData3.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(46, 25).addBox(1.0F, -17.0F, 20.0F, 14.0F, 7.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+        modelPartData3.addOrReplaceChild("cube_r10", CubeListBuilder.create().texOffs(48, 0).addBox(3.0F, -22.0F, -21.0F, 10.0F, 3.0F, 10.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+        modelPartData3.addOrReplaceChild("cube_r11", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -24.0F, -15.0F, 16.0F, 10.0F, 15.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+        modelPartData3.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(0, 26).addBox(1.0F, 5.0F, 13.0F, 14.0F, 14.0F, 9.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition modelPartData4 = modelPartData.addOrReplaceChild("rightleg", CubeListBuilder.create(), PartPose.offset(-5.0F, 7.0F, 21.0F));
+        modelPartData4.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(7, 99).addBox(-3.2154F, 12.0F, -1.8742F, 5.0F, 2.0F, 1.0F, true), PartPose.offset(1.0F, 3.0F, 0.0F));
+        modelPartData4.addOrReplaceChild("cube_r14", CubeListBuilder.create().texOffs(0, 102).addBox(-18.0F, -19.0F, 17.0F, 7.0F, 19.0F, 7.0F, true), PartPose.offset(13.0F, 17.0F, -21.0F));
+        PartDefinition modelPartData5 = modelPartData.addOrReplaceChild("rightarm", CubeListBuilder.create().texOffs(32, 67).addBox(-6.2154F, 20.0F, -4.8742F, 10.0F, 3.0F, 9.0F, true), PartPose.offset(-9.0F, 1.0F, 3.0F));
+        modelPartData5.addOrReplaceChild("cube_r15", CubeListBuilder.create().texOffs(0, 75).addBox(-8.0F, -24.0F, 2.0F, 8.0F, 12.0F, 7.0F), PartPose.offset(3.0F, 23.0F, -3.0F));
+        modelPartData5.addOrReplaceChild("cube_r16", CubeListBuilder.create().texOffs(36, 79).addBox(-24.0F, -2.0F, -3.0F, 8.0F, 3.0F, 2.0F, true), PartPose.offset(19.0F, 23.0F, -3.0F));
+        modelPartData5.addOrReplaceChild("cube_r17", CubeListBuilder.create().texOffs(0, 53).addBox(-9.0F, -14.0F, -2.0F, 10.0F, 12.0F, 9.0F), PartPose.offset(3.0F, 23.0F, -3.0F));
+        PartDefinition modelPartData6 = modelPartData.addOrReplaceChild("head", CubeListBuilder.create().texOffs(57, 59).addBox(-5.0F, -2.0F, -8.0F, 10.0F, 8.0F, 9.0F), PartPose.offset(0.0F, -5.0F, 0.0F));
+        modelPartData6.addOrReplaceChild("cube_r18", CubeListBuilder.create().texOffs(96, 61).addBox(5.0F, -27.0F, -8.0F, 6.0F, 4.0F, 5.0F), PartPose.offset(-8.0F, 29.0F, 0.0F));
+        modelPartData6.addOrReplaceChild("cube_r19", CubeListBuilder.create().texOffs(87, 50).addBox(3.0F, -21.0F, -26.0F, 10.0F, 4.0F, 6.0F), PartPose.offset(-8.0F, 29.0F, 0.0F));
+        modelPartData6.addOrReplaceChild("cube_r20", CubeListBuilder.create().texOffs(98, 72).addBox(3.0F, -20.0F, -29.0F, 10.0F, 4.0F, 5.0F), PartPose.offset(-8.0F, 29.0F, 0.0F));
+        return LayerDefinition.create(modelData, 128, 128);
     }
 
     @Override
-    public void setAngles(AlbinoGorillaEntity entity, float limbSwing, float limbSwingAmount, float animationProgress, float netHeadYaw, float headPitch) {
-        this.getPart().traverse().forEach(ModelPart::resetTransform);
-        this.head.pitch = headPitch * (float) (Math.PI / 180);
-        this.head.yaw = netHeadYaw * (float) (Math.PI / 180);
+    public void setupAnim(AlbinoGorillaEntity entity, float limbSwing, float limbSwingAmount, float animationProgress, float netHeadYaw, float headPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.head.xRot = headPitch * (float) (Math.PI / 180);
+        this.head.yRot = netHeadYaw * (float) (Math.PI / 180);
 
-        this.leftArm.pitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.rightArm.pitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
-        this.leftLeg.pitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.rightLeg.pitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
+        this.leftArm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.rightArm.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
+        this.leftLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.rightLeg.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
 
-        this.cube_r1.pitch = 0.131F;
-        this.cube_r1.yaw = -0.0433F;
-        this.cube_r1.roll = -0.0057F;
-        this.cube_r2.pitch = -0.2618F;
-        this.cube_r3.pitch = -0.0873F;
-        this.cube_r4.pitch = -0.1309F;
-        this.cube_r4.yaw = -0.0873F;
-        this.cube_r5.yaw = -0.0873F;
-        this.cube_r6.pitch = -0.654F;
-        this.cube_r6.yaw = 0.028F;
-        this.cube_r6.roll = 0.0334F;
-        this.cube_r7.pitch = -0.654F;
-        this.cube_r7.yaw = -0.028F;
-        this.cube_r7.roll = -0.0334F;
-        this.cube_r8.pitch = -0.0436F;
-        this.cube_r9.pitch = 0.0436F;
-        this.cube_r10.pitch = -0.7854F;
-        this.cube_r11.pitch = -0.5672F;
-        this.cube_r12.pitch = 1.3963F;
-        this.cube_r13.pitch = -0.1309F;
-        this.cube_r13.yaw = 0.0873F;
-        this.cube_r14.yaw = 0.0873F;
-        this.cube_r15.pitch = 0.131F;
-        this.cube_r15.yaw = 0.0433F;
-        this.cube_r15.roll = 0.0057F;
-        this.cube_r16.pitch = -0.2618F;
-        this.cube_r17.pitch = -0.1309F;
-        this.cube_r18.pitch = 0.0873F;
-        this.cube_r19.pitch = -0.7418F;
-        this.cube_r20.pitch = -0.9163F;
+        this.cube_r1.xRot = 0.131F;
+        this.cube_r1.yRot = -0.0433F;
+        this.cube_r1.zRot = -0.0057F;
+        this.cube_r2.xRot = -0.2618F;
+        this.cube_r3.xRot = -0.0873F;
+        this.cube_r4.xRot = -0.1309F;
+        this.cube_r4.yRot = -0.0873F;
+        this.cube_r5.yRot = -0.0873F;
+        this.cube_r6.xRot = -0.654F;
+        this.cube_r6.yRot = 0.028F;
+        this.cube_r6.zRot = 0.0334F;
+        this.cube_r7.xRot = -0.654F;
+        this.cube_r7.yRot = -0.028F;
+        this.cube_r7.zRot = -0.0334F;
+        this.cube_r8.xRot = -0.0436F;
+        this.cube_r9.xRot = 0.0436F;
+        this.cube_r10.xRot = -0.7854F;
+        this.cube_r11.xRot = -0.5672F;
+        this.cube_r12.xRot = 1.3963F;
+        this.cube_r13.xRot = -0.1309F;
+        this.cube_r13.yRot = 0.0873F;
+        this.cube_r14.yRot = 0.0873F;
+        this.cube_r15.xRot = 0.131F;
+        this.cube_r15.yRot = 0.0433F;
+        this.cube_r15.zRot = 0.0057F;
+        this.cube_r16.xRot = -0.2618F;
+        this.cube_r17.xRot = -0.1309F;
+        this.cube_r18.xRot = 0.0873F;
+        this.cube_r19.xRot = -0.7418F;
+        this.cube_r20.xRot = -0.9163F;
     }
 
     @Override
-    public ModelPart getPart() {
+    public ModelPart root() {
         return this.root;
     }
 }

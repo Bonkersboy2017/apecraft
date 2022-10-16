@@ -1,40 +1,40 @@
 package com.apedev.apecraft.mixin;
 
 import com.apedev.apecraft.RegisterWorldgen;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.noise.NoiseParametersKeys;
-import net.minecraft.world.gen.surfacebuilder.MaterialRules;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Noises;
+import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules.class)
+@Mixin(net.minecraft.data.worldgen.SurfaceRuleData.class)
 public class VanillaSurfaceRulesInjector {
 
-    private static MaterialRules.MaterialRule block(Block block) {
-        return MaterialRules.block(block.getDefaultState());
+    private static SurfaceRules.RuleSource block(Block block) {
+        return SurfaceRules.state(block.defaultBlockState());
     }
 
-    @Inject(method = "createOverworldSurfaceRule", at = @At("RETURN"), cancellable = true)
-    private static void createOverworldSurfaceRule(CallbackInfoReturnable<MaterialRules.MaterialRule> cir) {
-        cir.setReturnValue(MaterialRules.sequence(MaterialRules.condition(
-                MaterialRules.STONE_DEPTH_FLOOR,
-                MaterialRules.sequence(
-                        MaterialRules.condition(
-                                MaterialRules.biome(RegisterWorldgen.REDWOOD),
+    @Inject(method = "overworldLike", at = @At("RETURN"), cancellable = true)
+    private static void overworldLike(CallbackInfoReturnable<SurfaceRules.RuleSource> cir) {
+        cir.setReturnValue(SurfaceRules.sequence(SurfaceRules.ifTrue(
+                SurfaceRules.ON_FLOOR,
+                SurfaceRules.sequence(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(RegisterWorldgen.REDWOOD),
                                 block(Blocks.GRASS_BLOCK)
                         ),
-                        MaterialRules.condition(
-                                MaterialRules.biome(RegisterWorldgen.REDWOOD),
-                                MaterialRules.condition(
-                                        MaterialRules.aboveY(YOffset.fixed(62), 0),
-                                        MaterialRules.condition(
-                                                MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(63), 0)),
-                                                MaterialRules.condition(
-                                                        MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE_SWAMP, 0.1D),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(RegisterWorldgen.REDWOOD),
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.yBlockCheck(VerticalAnchor.absolute(62), 0),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0)),
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.noiseCondition(Noises.SWAMP, 0.1D),
                                                         block(Blocks.WATER)
                                                 )
                                         )

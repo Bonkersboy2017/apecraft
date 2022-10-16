@@ -1,38 +1,38 @@
 package com.apedev.apecraft.weapons;
 
 import com.apedev.apecraft.items.RegisterItems;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
-public class ToolMaterialSilver implements ToolMaterial {
+public class ToolMaterialSilver implements Tier {
 
     @Override
-    public int getDurability() {
+    public int getUses() {
         return 200;
     }
 
     @Override
-    public float getMiningSpeedMultiplier() {
+    public float getSpeed() {
         return 7.0f;
     }
 
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return 1.5f;
     }
 
     @Override
-    public int getMiningLevel() {
+    public int getLevel() {
         return 3;
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return 5;
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(RegisterItems.SILVER_INGOT);
+        return Ingredient.of(RegisterItems.SILVER_INGOT);
     }
 }

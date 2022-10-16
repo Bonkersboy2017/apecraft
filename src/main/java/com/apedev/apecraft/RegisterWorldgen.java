@@ -3,90 +3,100 @@ package com.apedev.apecraft;
 import com.apedev.apecraft.registry.RegisterEntities;
 import com.apedev.apecraft.registry.RegisterBlocks;
 import com.apedev.apecraft.worldgen.ModFeatures;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.sound.MusicType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
-import net.minecraft.world.gen.foliage.MegaPineFoliagePlacer;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.Musics;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaPineFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class RegisterWorldgen {
 
-    public static final RegistryKey<Biome> REDWOOD = register("redwood");
+    public static final ResourceKey<Biome> REDWOOD = register("redwood");
 
-    private static RegistryKey<Biome> register(String name) {
-        return RegistryKey.of(Registry.BIOME_KEY, ApecraftMod.id(name));
+    private static ResourceKey<Biome> register(String name) {
+        return ResourceKey.create(Registry.BIOME_REGISTRY, ApecraftMod.id(name));
     }
 
     public static void registerBiomes() {
         register(REDWOOD, createRedwood());
     }
 
-    private static RegistryEntry<Biome> register(RegistryKey<Biome> key, Biome biome) {
-        return BuiltinRegistries.add(BuiltinRegistries.BIOME, key, biome);
+    private static void register(ResourceKey<Biome> key, Biome biome) {
+        BuiltinRegistries.register(BuiltinRegistries.BIOME, key, biome);
     }
 
     public static Biome createRedwood() {
-        SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
-        DefaultBiomeFeatures.addBatsAndMonsters(spawnSettings);
+        MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
+        BiomeDefaultFeatures.commonSpawns(spawnSettings);
 
 
-        spawnSettings.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(RegisterEntities.CHIMPANZEE, 10, 1, 1));
-        spawnSettings.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(RegisterEntities.GORILLA, 10, 1, 1));
-        spawnSettings.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(RegisterEntities.BONOBO, 10, 1, 1));
-        spawnSettings.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(RegisterEntities.ORANGUTAN, 10, 1, 1));
-        spawnSettings.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(RegisterEntities.SKINNY_ORANGUTAN, 10, 1, 1));
-        GenerationSettings.Builder featureSettings = new GenerationSettings.Builder();
+        spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(RegisterEntities.CHIMPANZEE, 10, 1, 1));
+        spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(RegisterEntities.GORILLA, 10, 1, 1));
+        spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(RegisterEntities.BONOBO, 10, 1, 1));
+        spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(RegisterEntities.ORANGUTAN, 10, 1, 1));
+        spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(RegisterEntities.SKINNY_ORANGUTAN, 10, 1, 1));
+        BiomeGenerationSettings.Builder featureSettings = new BiomeGenerationSettings.Builder();
 
-        featureSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, TREES_REDWOOD);
-        featureSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_GRASS_NORMAL);
+        featureSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TREES_REDWOOD);
+        featureSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_NORMAL);
 //        featureSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.FLOWER_PLAIN);
-        featureSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BROWN_MUSHROOM_SWAMP);
-        featureSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.RED_MUSHROOM_SWAMP);
-        DefaultBiomeFeatures.addPlainsTallGrass(featureSettings);
-        DefaultBiomeFeatures.addDefaultOres(featureSettings);
-        DefaultBiomeFeatures.addDefaultDisks(featureSettings);
-        DefaultBiomeFeatures.addExtraDefaultFlowers(featureSettings);
+        featureSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.BROWN_MUSHROOM_SWAMP);
+        featureSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.RED_MUSHROOM_SWAMP);
+        BiomeDefaultFeatures.addPlainGrass(featureSettings);
+        BiomeDefaultFeatures.addDefaultOres(featureSettings);
+        BiomeDefaultFeatures.addDefaultSoftDisks(featureSettings);
+        BiomeDefaultFeatures.addWarmFlowers(featureSettings);
 //        DefaultBiomeFeatures.addDefaultGrass(featureSettings);
-        DefaultBiomeFeatures.addLandCarvers(featureSettings);
-        DefaultBiomeFeatures.addAmethystGeodes(featureSettings);
-        DefaultBiomeFeatures.addDungeons(featureSettings);
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(featureSettings);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(featureSettings);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(featureSettings);
 //        DefaultBiomeFeatures.addMineables(featureSettings);
-        DefaultBiomeFeatures.addFrozenTopLayer(featureSettings);
-        DefaultBiomeFeatures.addSprings(featureSettings);
+        BiomeDefaultFeatures.addSurfaceFreezing(featureSettings);
+        BiomeDefaultFeatures.addDefaultSprings(featureSettings);
 //
 
-        return new Biome.Builder()
+        return new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.NONE)
                 .temperature(0.6F)
                 .downfall(0.9F)
-                .effects(new BiomeEffects.Builder()
-                        .grassColorModifier(BiomeEffects.GrassColorModifier.DARK_FOREST)
-                        .foliageColor(6975545)
+                .specialEffects(new BiomeSpecialEffects.Builder()
+                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.DARK_FOREST)
+                        .foliageColorOverride(6975545)
                         .waterColor(4699130)
                         .waterFogColor(334139)
                         .fogColor(12638463)
-                        .skyColor(OverworldBiomeCreator.getSkyColor(0.6F))
-                        .music(MusicType.GAME)
+                        .skyColor(OverworldBiomes.calculateSkyColor(0.6F))
+                        .backgroundMusic(Musics.GAME)
                         .build()
                 )
-                .spawnSettings(spawnSettings.build())
+                .mobSpawnSettings(spawnSettings.build())
                 .generationSettings(featureSettings.build())
                 .build();
     }
 
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> REDWOOD_TREE = ModFeatures.register("redwood_tree", Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(RegisterBlocks.REDWOOD_LOG), new GiantTrunkPlacer(19, 14, 0), BlockStateProvider.of(RegisterBlocks.REDWOOD_LEAVES), new MegaPineFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(1), ConstantIntProvider.create(17)), new TwoLayersFeatureSize(1, 0, 3)).ignoreVines().build());
+    public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> REDWOOD_TREE = ModFeatures.register("redwood_tree", Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(RegisterBlocks.REDWOOD_LOG), new GiantTrunkPlacer(19, 14, 0), BlockStateProvider.simple(RegisterBlocks.REDWOOD_LEAVES), new MegaPineFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1), ConstantInt.of(17)), new TwoLayersFeatureSize(1, 0, 3)).ignoreVines().build());
 
-    public static final RegistryEntry<PlacedFeature> TREES_REDWOOD = ModFeatures.register("trees_redwood", RegisterWorldgen.REDWOOD_TREE, VegetationPlacedFeatures.modifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(8, 0.1f, 1), Blocks.OAK_SAPLING));
+    public static final Holder<PlacedFeature> TREES_REDWOOD = ModFeatures.register("trees_redwood", RegisterWorldgen.REDWOOD_TREE, VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1f, 1), Blocks.OAK_SAPLING));
 }
 
 

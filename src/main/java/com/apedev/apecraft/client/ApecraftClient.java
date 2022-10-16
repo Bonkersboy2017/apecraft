@@ -8,24 +8,24 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 
 @Environment(EnvType.CLIENT)
 public class ApecraftClient implements ClientModInitializer {
-    public static final EntityModelLayer MODEL_BONOBO_LAYER = new EntityModelLayer(ApecraftMod.id("bonobo"), "main");
-    public static final EntityModelLayer MODEL_BONOBO_BRUTE_LAYER = new EntityModelLayer(ApecraftMod.id("bonobo_brute"), "main");
-    public static final EntityModelLayer MODEL_CHIMPANZEE_LAYER = new EntityModelLayer(ApecraftMod.id("chimpanzee"), "main");
-    public static final EntityModelLayer MODEL_CHIMPANZEE_BRUTE_LAYER = new EntityModelLayer(ApecraftMod.id("chimpanzee_brute"), "main");
-    public static final EntityModelLayer MODEL_ALBINO_CHIMPANZEE_LAYER = new EntityModelLayer(ApecraftMod.id("albino_chimpanzee"), "main");
-    public static final EntityModelLayer MODEL_ALBINO_GORILLA_ENTITY = new EntityModelLayer(ApecraftMod.id("albino_gorilla"), "main");
-    public static final EntityModelLayer MODEL_GORILLA_ENTITY = new EntityModelLayer(ApecraftMod.id("gorilla"), "main");
-    public static final EntityModelLayer MODEL_ORANGUTAN_LAYER = new EntityModelLayer(ApecraftMod.id("orangutan"), "main");
-    public static final EntityModelLayer MODEL_SKINNY_ORANGUTAN_LAYER = new EntityModelLayer(ApecraftMod.id("skinny_orangutan"), "main");
-    public static final EntityModelLayer MODEL_GIGANTOPITHECUS_LAYER = new EntityModelLayer(ApecraftMod.id("gigantopithecus"), "main");
-    public static final EntityModelLayer MODEL_KINGKONG_LAYER = new EntityModelLayer(ApecraftMod.id("kingkong"), "main");
-    public static final EntityModelLayer MODEL_GEORGE_LAYER = new EntityModelLayer(ApecraftMod.id("george"), "main");
-    public static final EntityModelLayer MODEL_LANGURMUR_LAYER = new EntityModelLayer(ApecraftMod.id("langarmur"), "main");
-    public static final EntityModelLayer MODEL_BAKULA_LAYER = new EntityModelLayer(ApecraftMod.id("bakula"), "main");
+    public static final ModelLayerLocation MODEL_BONOBO_LAYER = new ModelLayerLocation(ApecraftMod.id("bonobo"), "main");
+    public static final ModelLayerLocation MODEL_BONOBO_BRUTE_LAYER = new ModelLayerLocation(ApecraftMod.id("bonobo_brute"), "main");
+    public static final ModelLayerLocation MODEL_CHIMPANZEE_LAYER = new ModelLayerLocation(ApecraftMod.id("chimpanzee"), "main");
+    public static final ModelLayerLocation MODEL_CHIMPANZEE_BRUTE_LAYER = new ModelLayerLocation(ApecraftMod.id("chimpanzee_brute"), "main");
+    public static final ModelLayerLocation MODEL_ALBINO_CHIMPANZEE_LAYER = new ModelLayerLocation(ApecraftMod.id("albino_chimpanzee"), "main");
+    public static final ModelLayerLocation MODEL_ALBINO_GORILLA_ENTITY = new ModelLayerLocation(ApecraftMod.id("albino_gorilla"), "main");
+    public static final ModelLayerLocation MODEL_GORILLA_ENTITY = new ModelLayerLocation(ApecraftMod.id("gorilla"), "main");
+    public static final ModelLayerLocation MODEL_ORANGUTAN_LAYER = new ModelLayerLocation(ApecraftMod.id("orangutan"), "main");
+    public static final ModelLayerLocation MODEL_SKINNY_ORANGUTAN_LAYER = new ModelLayerLocation(ApecraftMod.id("skinny_orangutan"), "main");
+    public static final ModelLayerLocation MODEL_GIGANTOPITHECUS_LAYER = new ModelLayerLocation(ApecraftMod.id("gigantopithecus"), "main");
+    public static final ModelLayerLocation MODEL_KINGKONG_LAYER = new ModelLayerLocation(ApecraftMod.id("kingkong"), "main");
+    public static final ModelLayerLocation MODEL_GEORGE_LAYER = new ModelLayerLocation(ApecraftMod.id("george"), "main");
+    public static final ModelLayerLocation MODEL_LANGURMUR_LAYER = new ModelLayerLocation(ApecraftMod.id("langarmur"), "main");
+    public static final ModelLayerLocation MODEL_BAKULA_LAYER = new ModelLayerLocation(ApecraftMod.id("bakula"), "main");
 
     @Override
     public void onInitializeClient() {

@@ -1,2 +1,2 @@
 accessWidener    v2    named
-accessible    method net/minecraft/world/biome/OverworldBiomeCreator    getSkyColor    (F)I
+accessible    method    net/minecraft/data/worldgen/biome/OverworldBiomes    calculateSkyColor    (F)I

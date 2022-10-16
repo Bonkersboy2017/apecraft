@@ -1,10 +1,10 @@
 package com.apedev.apecraft.entity;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.Level;
 
 public class BonoboBruteEntity extends BaseMonke {
-    public BonoboBruteEntity(EntityType<? extends BonoboBruteEntity> entityType, World world) {
+    public BonoboBruteEntity(EntityType<? extends BonoboBruteEntity> entityType, Level world) {
         super(entityType, world);
     }
 }

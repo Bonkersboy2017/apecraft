@@ -1,12 +1,12 @@
 package com.apedev.apecraft.weapons;
 
 import com.apedev.apecraft.ApecraftMod;
-import net.minecraft.item.Item;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 
 public class SwordBase extends SwordItem {
-    public SwordBase(ToolMaterial toolMaterial) {
-        super(toolMaterial, 4, 3.0f, new Item.Settings().group(ApecraftMod.ITEM_GROUP));
+    public SwordBase(Tier toolMaterial) {
+        super(toolMaterial, 4, 3.0f, new Item.Properties().tab(ApecraftMod.ITEM_GROUP));
     }
 }

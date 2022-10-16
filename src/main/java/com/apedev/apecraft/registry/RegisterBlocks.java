@@ -3,31 +3,40 @@ package com.apedev.apecraft.registry;
 import com.apedev.apecraft.ApecraftMod;
 import com.apedev.apecraft.block.BananaBranchBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class RegisterBlocks {
 
-    public static final AbstractBlock.Settings REDWOOD_SETTINGS = FabricBlockSettings.copyOf(Blocks.BIRCH_PLANKS);
+    public static final BlockBehaviour.Properties REDWOOD_SETTINGS = FabricBlockSettings.copyOf(Blocks.BIRCH_PLANKS);
 
-    public static final Block REDWOOD_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).nonOpaque());
-    public static final Block REDWOOD_LEAVES_WITH_PINECONE = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).nonOpaque());
-    public static final Block REDWOOD_LOG = new PillarBlock(REDWOOD_SETTINGS);
+    public static final Block REDWOOD_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).noOcclusion());
+    public static final Block REDWOOD_LEAVES_WITH_PINECONE = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).noOcclusion());
+    public static final Block REDWOOD_LOG = new RotatedPillarBlock(REDWOOD_SETTINGS);
     public static final Block REDWOOD_PLANKS = new Block(REDWOOD_SETTINGS);
-    public static final Block MUDSTONE = new OreBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.STONE));
-    public static final Block MUDSTONE_TILES = new Block(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.STONE));
-    public static final Block POLISHED_MUDSTONE = new Block(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.STONE));
-    public static final Block SILVER_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).sounds(BlockSoundGroup.STONE));
-    public static final Block SILVER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.STONE));
-    public static final Block BANANA_BRANCH = new BananaBranchBlock(FabricBlockSettings.copyOf(Blocks.COCOA).sounds(BlockSoundGroup.BAMBOO));
-    public static final Block REDWOOD_STAIRS = new StairsBlock(Blocks.OAK_STAIRS.getDefaultState(), REDWOOD_SETTINGS);
-    public static final Block REDWOOD_BUTTON = new WoodenButtonBlock(REDWOOD_SETTINGS);
-    public static final Block REDWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, REDWOOD_SETTINGS);
+    public static final Block MUDSTONE = new DropExperienceBlock(FabricBlockSettings.copyOf(Blocks.STONE).sound(SoundType.STONE));
+    public static final Block MUDSTONE_TILES = new Block(FabricBlockSettings.copyOf(Blocks.STONE).sound(SoundType.STONE));
+    public static final Block POLISHED_MUDSTONE = new Block(FabricBlockSettings.copyOf(Blocks.STONE).sound(SoundType.STONE));
+    public static final Block SILVER_ORE = new DropExperienceBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).sound(SoundType.STONE));
+    public static final Block SILVER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).sound(SoundType.STONE));
+    public static final Block BANANA_BRANCH = new BananaBranchBlock(FabricBlockSettings.copyOf(Blocks.COCOA).sound(SoundType.BAMBOO));
+    public static final Block REDWOOD_STAIRS = new StairBlock(Blocks.OAK_STAIRS.defaultBlockState(), REDWOOD_SETTINGS);
+    public static final Block REDWOOD_BUTTON = new WoodButtonBlock(REDWOOD_SETTINGS);
+    public static final Block REDWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, REDWOOD_SETTINGS);
     public static final Block REDWOOD_SLAB = new SlabBlock(REDWOOD_SETTINGS);
 
 
@@ -51,9 +60,9 @@ public class RegisterBlocks {
 
     }
 
-    private static void registerBlock(Block block, ItemGroup group, Identifier ID) {
+    private static void registerBlock(Block block, CreativeModeTab group, ResourceLocation ID) {
         Registry.register(Registry.BLOCK, ID, block);
-        Registry.register(Registry.ITEM, ID, new BlockItem(block, new Item.Settings().group(group)));
+        Registry.register(Registry.ITEM, ID, new BlockItem(block, new Item.Properties().tab(group)));
 
 
     }

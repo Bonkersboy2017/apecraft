@@ -3,18 +3,18 @@ package com.apedev.apecraft.entity.render;
 import com.apedev.apecraft.ApecraftMod;
 import com.apedev.apecraft.client.ApecraftClient;
 import com.apedev.apecraft.entity.GigantopithecusEntity;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class GigantopithecusEntityRenderer extends MobEntityRenderer<GigantopithecusEntity, GigantopithecusEntityModel> {
+public class GigantopithecusEntityRenderer extends MobRenderer<GigantopithecusEntity, GigantopithecusEntityModel> {
 
-    public GigantopithecusEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new GigantopithecusEntityModel(context.getPart(ApecraftClient.MODEL_GIGANTOPITHECUS_LAYER)), 1.2F);
+    public GigantopithecusEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, new GigantopithecusEntityModel(context.bakeLayer(ApecraftClient.MODEL_GIGANTOPITHECUS_LAYER)), 1.2F);
     }
 
     @Override
-    public Identifier getTexture(GigantopithecusEntity entity) {
+    public ResourceLocation getTextureLocation(GigantopithecusEntity entity) {
         return ApecraftMod.id("textures/entity/gigantopithecus.png");
     }
 }

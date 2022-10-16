@@ -3,18 +3,18 @@ package com.apedev.apecraft.entity.render;
 import com.apedev.apecraft.ApecraftMod;
 import com.apedev.apecraft.client.ApecraftClient;
 import com.apedev.apecraft.entity.BakulaEntity;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class BakulaEntityRenderer extends MobEntityRenderer<BakulaEntity, BakulaEntityModel> {
+public class BakulaEntityRenderer extends MobRenderer<BakulaEntity, BakulaEntityModel> {
 
-    public BakulaEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new BakulaEntityModel(context.getPart(ApecraftClient.MODEL_BAKULA_LAYER)), 1.3F);
+    public BakulaEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, new BakulaEntityModel(context.bakeLayer(ApecraftClient.MODEL_BAKULA_LAYER)), 1.3F);
     }
 
     @Override
-    public Identifier getTexture(BakulaEntity entity) {
+    public ResourceLocation getTextureLocation(BakulaEntity entity) {
         return ApecraftMod.id("textures/entity/bakula.png");
     }
 }

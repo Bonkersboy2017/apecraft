@@ -2,10 +2,6 @@ package com.apedev.apecraft.mixin;
 
 import com.apedev.apecraft.RegisterWorldgen;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.biome.source.util.VanillaBiomeParameters;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -14,73 +10,78 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Consumer;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.biome.OverworldBiomeBuilder;
 
 
-@Mixin(VanillaBiomeParameters.class)
+@Mixin(OverworldBiomeBuilder.class)
 public final class VanillaBiomeParametersMixin {
 
     @Shadow
-    private void writeBiomeParameters(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters, MultiNoiseUtil.ParameterRange temperature, MultiNoiseUtil.ParameterRange humidity, MultiNoiseUtil.ParameterRange continentalness, MultiNoiseUtil.ParameterRange erosion, MultiNoiseUtil.ParameterRange weirdness, float offset, RegistryKey<Biome> biome) {
-        parameters.accept(Pair.of(MultiNoiseUtil.createNoiseHypercube(temperature, humidity, continentalness, erosion, MultiNoiseUtil.ParameterRange.of(0.0F), weirdness, offset), biome));
-        parameters.accept(Pair.of(MultiNoiseUtil.createNoiseHypercube(temperature, humidity, continentalness, erosion, MultiNoiseUtil.ParameterRange.of(1.0F), weirdness, offset), biome));
+    private void addSurfaceBiome(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> parameters, Climate.Parameter temperature, Climate.Parameter humidity, Climate.Parameter continentalness, Climate.Parameter erosion, Climate.Parameter weirdness, float offset, ResourceKey<Biome> biome) {
+        parameters.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(0.0F), weirdness, offset), biome));
+        parameters.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(1.0F), weirdness, offset), biome));
+        throw new AssertionError("Mixin injection failed.");
     }
 
     @Shadow
     @Final
-    private MultiNoiseUtil.ParameterRange[] erosionParameters;
+    private Climate.Parameter[] erosions;
 
     @Shadow
     @Final
-    private MultiNoiseUtil.ParameterRange nearInlandContinentalness;
+    private Climate.Parameter nearInlandContinentalness;
 
     @Shadow
     @Final
-    private MultiNoiseUtil.ParameterRange farInlandContinentalness;
+    private Climate.Parameter farInlandContinentalness;
 
     @Shadow
     @Final
-    private MultiNoiseUtil.ParameterRange riverContinentalness;
+    private Climate.Parameter inlandContinentalness;
 
-    @Shadow @Final private MultiNoiseUtil.ParameterRange[] humidityParameters;
+    @Shadow @Final private Climate.Parameter[] humidities;
 
-    @Shadow @Final private MultiNoiseUtil.ParameterRange[] temperatureParameters;
+    @Shadow @Final private Climate.Parameter[] temperatures;
 
-    @Inject(method = "writeLowBiomes", at = @At("TAIL"))
-    private void injectBiomesNearRivers(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters, MultiNoiseUtil.ParameterRange weirdness, CallbackInfo ci) {
-        this.writeBiomeParameters(
+    @Inject(method = "addLowSlice", at = @At("TAIL"))
+    private void injectBiomesNearRivers(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> parameters, Climate.Parameter weirdness, CallbackInfo ci) {
+        this.addSurfaceBiome(
                 parameters,
-                MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[2], this.temperatureParameters[4]),
-                MultiNoiseUtil.ParameterRange.combine(this.humidityParameters[1], this.humidityParameters[4]),
-                MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
-                this.erosionParameters[3],
+                Climate.Parameter.span(this.temperatures[2], this.temperatures[4]),
+                Climate.Parameter.span(this.humidities[1], this.humidities[4]),
+                Climate.Parameter.span(this.nearInlandContinentalness, this.farInlandContinentalness),
+                this.erosions[3],
                 weirdness,
                 0.0F,
                 RegisterWorldgen.REDWOOD
         );
     }
 
-    @Inject(method = "writeValleyBiomes", at = @At("TAIL"))
-    private void injectRiverBiomes(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters, MultiNoiseUtil.ParameterRange weirdness, CallbackInfo ci) {
-        this.writeBiomeParameters(
+    @Inject(method = "addValleys", at = @At("TAIL"))
+    private void injectRiverBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> parameters, Climate.Parameter weirdness, CallbackInfo ci) {
+        this.addSurfaceBiome(
                 parameters,
-                MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[2], this.temperatureParameters[4]),
-                MultiNoiseUtil.ParameterRange.combine(this.humidityParameters[1], this.humidityParameters[4]),
-                MultiNoiseUtil.ParameterRange.combine(this.riverContinentalness, this.farInlandContinentalness),
-                this.erosionParameters[3],
+                Climate.Parameter.span(this.temperatures[2], this.temperatures[4]),
+                Climate.Parameter.span(this.humidities[1], this.humidities[4]),
+                Climate.Parameter.span(this.inlandContinentalness, this.farInlandContinentalness),
+                this.erosions[3],
                 weirdness,
                 0.0F,
                 RegisterWorldgen.REDWOOD
         );
     }
 
-    @Inject(method = "writeMidBiomes", at = @At("TAIL"))
-    private void injectMixedBiomes(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters, MultiNoiseUtil.ParameterRange weirdness, CallbackInfo ci) {
-        this.writeBiomeParameters(
+    @Inject(method = "addMidSlice", at = @At("TAIL"))
+    private void injectMixedBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> parameters, Climate.Parameter weirdness, CallbackInfo ci) {
+        this.addSurfaceBiome(
                 parameters,
-                MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[2], this.temperatureParameters[4]),
-                MultiNoiseUtil.ParameterRange.combine(this.humidityParameters[1], this.humidityParameters[4]),
-                MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
-                this.erosionParameters[3],
+                Climate.Parameter.span(this.temperatures[2], this.temperatures[4]),
+                Climate.Parameter.span(this.humidities[1], this.humidities[4]),
+                Climate.Parameter.span(this.nearInlandContinentalness, this.farInlandContinentalness),
+                this.erosions[3],
                 weirdness,
                 0.0F,
                 RegisterWorldgen.REDWOOD

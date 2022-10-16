@@ -1,9 +1,9 @@
 package com.apedev.apecraft.food;
 
-import net.minecraft.item.FoodComponent;
+import net.minecraft.world.food.FoodProperties;
 
 public class ModFoodComponents {
 
-    public static final FoodComponent BANANA = (new FoodComponent.Builder()).hunger(7).saturationModifier(1).build();
-    public static final FoodComponent SNOW_BERRIES = (new FoodComponent.Builder()).hunger(7).saturationModifier(1).build();
+    public static final FoodProperties BANANA = (new FoodProperties.Builder()).nutrition(7).saturationMod(1).build();
+    public static final FoodProperties SNOW_BERRIES = (new FoodProperties.Builder()).nutrition(7).saturationMod(1).build();
 }

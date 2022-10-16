@@ -2,38 +2,38 @@ package com.apedev.apecraft.weapons;
 
 
 import com.apedev.apecraft.items.RegisterItems;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
-public class ToolMaterialMudstone implements ToolMaterial {
+public class ToolMaterialMudstone implements Tier {
 
     @Override
-    public int getDurability() {
+    public int getUses() {
         return 100;
     }
 
     @Override
-    public float getMiningSpeedMultiplier() {
+    public float getSpeed() {
         return 5.0f;
     }
 
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return 1.0f;
     }
 
     @Override
-    public int getMiningLevel() {
+    public int getLevel() {
         return 2;
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return 5;
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(RegisterItems.BANANA);
+        return Ingredient.of(RegisterItems.BANANA);
     }
 }
